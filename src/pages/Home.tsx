@@ -1,11 +1,16 @@
-import { View, Text, StyleSheet } from "react-native";
+// src/pages/Home.tsx
+import { Text, StyleSheet } from "react-native";
 import React from "react";
 import Timeline from "../components/Timeline";
 import Control from "../components/Control";
 import Container from "../components/Container";
 import { useThemeContext } from "../contexts/ThemeContext";
 
-export default function Home() {
+type HomeProps = {
+  onSelectTrack: () => void;
+};
+
+export default function Home({ onSelectTrack }: HomeProps) {
   const theme = useThemeContext();
 
   return (
@@ -15,7 +20,7 @@ export default function Home() {
       </Text>
 
       <Timeline />
-      <Control />
+      <Control onSelectTrack={onSelectTrack} />
     </Container>
   );
 }
@@ -24,6 +29,5 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
     textAlign: "center",
-    
   },
 });

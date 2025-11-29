@@ -1,11 +1,15 @@
-import { Button, StyleSheet, View } from "react-native";
-
+// src/components/Control.tsx
+import { Button, StyleSheet } from "react-native";
 import { useAppContext } from "../contexts/AppContext";
 import ControlFooter from "./ControlFooter";
 import { useThemeContext } from "../contexts/ThemeContext";
 import Container from "./Container";
 
-export default function Control() {
+type ControlProps = {
+  onSelectTrack: () => void;
+};
+
+export default function Control({ onSelectTrack }: ControlProps) {
   const theme = useThemeContext();
   const app = useAppContext();
 
@@ -22,7 +26,8 @@ export default function Control() {
       <Container style={[styles.container]}>
         <Button title="Prev" onPress={handlePrev} />
         <Button title="Next" onPress={handleNext} />
-        <Button title="Toggle Theme" onPress={theme.toggleTheme}/>
+        <Button title="Toggle Theme" onPress={theme.toggleTheme} />
+        <Button title="Select other Track" onPress={onSelectTrack} />
       </Container>
       <ControlFooter />
     </>
